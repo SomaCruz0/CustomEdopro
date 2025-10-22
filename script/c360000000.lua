@@ -24,7 +24,7 @@ function s.matfilter(c,lc,st,tp)
 end
 
 function s.thfilter(c)
-	return c:IsCode(63899465) and c:IsAbleToHand()
+	return c:IsCode(63899465) and c:IsSSetable()
 end
 
 function s.thcon(e,tp,eg,ep,ev,re,r,rp)
@@ -33,7 +33,7 @@ end
 
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_DECK,0,1,nil) end
-	Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_DECK)
+	Duel.SetOperationInfo(0,CATEGORY_SEARCH,nil,1,tp,LOCATION_DECK)
 end
 
 function s.thop(e,tp,eg,ep,ev,re,r,rp)
