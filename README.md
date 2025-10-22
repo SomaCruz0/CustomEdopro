@@ -34,7 +34,7 @@ be named `<cardid>.jpg` so EDOPro can recognize them properly.
 
 ## Author
 
-- Created by: (add your name if desired)
+- Created by: SomaCruz
 
 ## License
 
