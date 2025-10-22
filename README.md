@@ -36,7 +36,4 @@ be named `<cardid>.jpg` so EDOPro can recognize them properly.
 
 - Created by: SomaCruz
 
-## License
-
-- For personal use. If you publish this expansion publicly, please credit the
-  original author(s) and respect copyright for card content and artwork.
+### Visit this page for more detailed instructions: https://github.com/ProjectIgnis/CardScripts/wiki
