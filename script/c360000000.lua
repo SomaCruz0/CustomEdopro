@@ -21,13 +21,6 @@ function s.initial_effect(c)
 	e1:SetOperation(s.spop)
 	c:RegisterEffect(e1)
 	--A link monster using this card cannot be destroyed by opponent's card effects
-	local e2=Effect.CreateEffect(c)
-	e2:SetProperty(EFFECT_FLAG_IGNORE_IMMUNE)
-	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_CONTINUOUS)
-	e2:SetCode(EVENT_BE_MATERIAL)
-	e2:SetCondition(s.indcon)
-	e2:SetOperation(s.indop)
-	c:RegisterEffect(e2)
 end
 
 function s.matfilter(c,lc,st,tp)
@@ -51,23 +44,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.LinkSummon(tp,sg:GetFirst(),c)
 	end
 end
-function s.indcon(e,tp,eg,ep,ev,re,r,rp)
-	return r==REASON_LINK
-end
-function s.indop(e,tp,eg,ep,ev,re,r,rp)
-	local c=e:GetHandler()
-	local rc=c:GetReasonCard()
-	--Cannot be destroyed by opponent's card effects
-	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(3060)
-	e1:SetType(EFFECT_TYPE_SINGLE)
-	e1:SetProperty(EFFECT_FLAG_CLIENT_HINT)
-	e1:SetCode(EFFECT_INDESTRUCTABLE_EFFECT)
-	e1:SetValue(s.indval)
-	e1:SetOwnerPlayer(ep)
-	e1:SetReset(RESET_EVENT|RESETS_STANDARD)
-	rc:RegisterEffect(e1,true)
-end
+
 function s.indval(e,re,rp)
 	return rp==1-e:GetOwnerPlayer()
 end
