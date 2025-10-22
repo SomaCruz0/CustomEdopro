@@ -6,7 +6,7 @@ function s.initial_effect(c)
 	--Must be properly summoned before reviving
 	c:EnableReviveLimit()
 	--Link summon procedure
-	Link.AddProcedure(c,s.matfilter,2,2)
+	Link.AddProcedure(c,s.matfilter,1,1)
 	--Link summon 1 link monster during opponent's main phase
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(id,0))
