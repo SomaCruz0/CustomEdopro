@@ -1,11 +1,11 @@
---リンクリボー
---Linkuriboh
+--Rescue-Ace Fire Keeper
+--Scripted by SomaCruz
 local s,id=GetID()
 function s.initial_effect(c)
 	c:EnableReviveLimit()
 	--Link Summon
-	Link.AddProcedure(c,aux.FilterBoolFunction(Card.IsLevel,1),1)
-	--Change ATK to 0
+	Link.AddProcedure(c,s.matfilter,1,1)
+	--Set field from Deck/GY
 	local e1=Effect.CreateEffect(c)
 	e1:SetCategory(CATEGORY_ATKCHANGE)
 	e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
@@ -15,34 +15,12 @@ function s.initial_effect(c)
 	e1:SetCost(Cost.SelfTribute)
 	e1:SetOperation(s.atkop)
 	c:RegisterEffect(e1)
-	--Special Summon itself from the GY
-	local e2=Effect.CreateEffect(c)
-	e2:SetCategory(CATEGORY_SPECIAL_SUMMON)
-	e2:SetType(EFFECT_TYPE_QUICK_O)
-	e2:SetCode(EVENT_FREE_CHAIN)
-	e2:SetRange(LOCATION_GRAVE)
-	e2:SetHintTiming(0,TIMING_BATTLE_START|TIMING_END_PHASE)
-	e2:SetCountLimit(1,id)
-	e2:SetCost(s.spcost)
-	e2:SetTarget(s.sptg)
-	e2:SetOperation(s.spop)
-	c:RegisterEffect(e2)
 end
-function s.atkcon(e,tp,eg,ep,ev,re,r,rp)
-	local at=Duel.GetAttacker()
-	return at and Duel.IsTurnPlayer(1-tp) and at:HasNonZeroAttack()
+
+function s.matfilter(c,scard,sumtype,tp)
+	return not c:IsType(TYPE_LINK,scard,sumtype,tp) and c:IsAttribute(ATTRIBUTE_FIRE,scard,sumtype,tp)
 end
-function s.atkop(e,tp,eg,ep,ev,re,r,rp)
-	local tc=Duel.GetAttacker()
-	if tc:IsRelateToBattle() and tc:IsFaceup() then
-		local e1=Effect.CreateEffect(e:GetHandler())
-		e1:SetType(EFFECT_TYPE_SINGLE)
-		e1:SetCode(EFFECT_SET_ATTACK_FINAL)
-		e1:SetValue(0)
-		e1:SetReset(RESETS_STANDARD_PHASE_END)
-		tc:RegisterEffect(e1)
-	end
-end
+
 function s.cfilter(c,ft,tp)
 	return c:IsLevel(1) and (ft>0 or c:GetSequence()<5)
 end
