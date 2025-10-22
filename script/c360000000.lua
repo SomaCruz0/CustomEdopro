@@ -1,6 +1,5 @@
---Ｉ：Ｐマスカレーナ
---I:P Masquerena
---Scripted by Eerie Code
+--Rescue-Ace Fire Keeper
+--Scripted by SomaCruz
 local s,id=GetID()
 function s.initial_effect(c)
 	--Must be properly summoned before reviving
@@ -20,11 +19,10 @@ function s.initial_effect(c)
 	e1:SetTarget(s.sptg)
 	e1:SetOperation(s.spop)
 	c:RegisterEffect(e1)
-	--A link monster using this card cannot be destroyed by opponent's card effects
 end
 
 function s.matfilter(c,lc,st,tp)
-	return not c:IsType(TYPE_LINK,lc,st,tp) and c:IsAttribute(ATTRIBUTE_FIRE,lc,st,tp)
+	return not c:IsType(TYPE_LINK,lc,st,tp) and c:IsAttribute(ATTRIBUTE_FIRE,lc,st,tp) and c:IsRace(RACE_MACHINE,lc,st,tp)
 end
 
 function s.spcon(e,tp,eg,ep,ev,re,r,rp)
