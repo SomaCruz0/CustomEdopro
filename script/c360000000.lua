@@ -29,9 +29,11 @@ function s.initial_effect(c)
 	e2:SetOperation(s.indop)
 	c:RegisterEffect(e2)
 end
+
 function s.matfilter(c,lc,st,tp)
-	return not c:IsType(TYPE_LINK,lc,st,tp)
+	return not c:IsType(TYPE_LINK,lc,st,tp) and c:IsAttribute(ATTRIBUTE_FIRE,lc,st,tp)
 end
+
 function s.spcon(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.IsTurnPlayer(1-tp) and Duel.IsMainPhase()
 end
