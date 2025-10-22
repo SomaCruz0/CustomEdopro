@@ -61,4 +61,4 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	if c:IsRelateToEffect(e) then 
 		Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)
 	end
-end~
+end
